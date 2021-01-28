@@ -26,8 +26,8 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 
 ## Como submeter?
 
-- Commite suas alterações de forma organizada
-- Um dia antes da entrevista será dada permissão para fazer o push/ abrir a pull request, abra uma pull request da sua branch para a master com a nomenclatura: Nome Sobrenome - dd-mm-yy
+- Commite suas alterações de forma organizada;
+- Após o prazo dado para a realização do teste, será dada permissão para fazer o push/ abrir a pull request, abra uma pull request da sua branch para a master com a nomenclatura: Nome Sobrenome - dd-mm-yy
 
 _Obs: Caso não tenha recebido permissão para realizar o push da branch entre em contato com o recrutador e envie seu usuário do GitHub_
 
