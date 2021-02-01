@@ -1,10 +1,19 @@
-* {
-  box-sizing: border-box;
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.content{
+    padding: 15px;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.ngx-pagination .current {
+    background: #11c76f !important;
+    color: #FFF !important;
+    border-radius: 100% !important;
+  }
+  .ngx-pagination a:hover, .ngx-pagination button:hover {
+    border-radius: 100% !important;
 }
 
-html,
-body {
-  font-family: sans-serif;
-  margin: 0;
-  padding: 0;
+.ngx-pagination a:focus, .ngx-pagination button:focus {
+    border-radius: 100% !important;
 }
