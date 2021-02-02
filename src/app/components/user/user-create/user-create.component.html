@@ -1,0 +1,22 @@
+<h5 class="h5">Novo Usuário</h5>
+<hr>
+    <form>
+        <div class="mb-3">
+            <label for="Nome" class="form-label">Nome</label>
+            <input type="name" class="form-control" name="name" id="name" [(ngModel)]="user.name" placeholder="Nome">
+          </div>
+          <div class="mb-3">
+            <label for="Imagem" class="form-label">Imagem</label>
+            <input type="text" class="form-control" name="imagem" id="imagem" [(ngModel)]="user.img" placeholder="Imagem">
+          </div>
+          <div class="mb-3">
+            <label for="Imagem" class="form-label">Username</label>
+            <input type="text" class="form-control" name="username" id="username" [(ngModel)]="user.username" placeholder="Username">
+        </div>
+    </form>
+
+     
+
+<button type="button" class="btn green" (click)=" createUser()">Salvar</button>
+
+<button type="button" class="btn green" (click)=" cancel()">Cancelar</button>

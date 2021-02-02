@@ -1,0 +1,33 @@
+.btn{
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+.green{
+    background: #11c76f;
+    border-radius: 40px;
+    color: #FFF;
+    border: 2px solid  #11c76f;
+    padding: 8px 24px;
+}
+.green:hover{
+    background: #FFF;
+    color: #11c76f;
+}
+.modal-header{
+    background: #11c76f;
+    color: #FFF;
+}
+.modal-title span{
+    color: #263224;
+}
+.modal-content{
+    border: transparent;
+}
+.form-control{
+    margin-bottom: 15px;
+}
+.modal-footer {
+    padding: 0 0.75rem !important;
+    border-top: transparent !important;
+    justify-content: center;
+}
