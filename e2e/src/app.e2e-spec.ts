@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Teste PicPay');
+    expect(page.getTitleText()).toEqual('picpay-desafio-frontend app is running!');
   });
 
   afterEach(async () => {
