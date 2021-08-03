@@ -5,7 +5,7 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 
 ## Avisos antes de começar
 
-- Certifique-se que você tenha acesso ao layout proposto no **Figma**, caso não tenha, solicite o acesso com o Recruiter
+- Certifique-se que você recebeu um email de convite de acesso ao layout proposto no **Figma**, caso não tenha recebido, solicite o acesso com o Recruiter. Também há screenshoots do Figma na pasta screenshots. Você não é obrigado a seguir o layout do figma, ele é apenas uma base para que você entenda melhor o desafio proposto.
 
 - Para a entrega do teste você precisará ter two factor habilitado na sua conta do GitHub, você poderá ver o passo a passo nesse tutorial: https://help.github.com/pt/github/authenticating-to-github/configuring-two-factor-authentication
 
