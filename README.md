@@ -1,15 +1,21 @@
-# Desafio Front-end PicPay
+# **Desafio Frontend PicPay**
 
 Primeiramente, obrigado pelo seu interesse em trabalhar na melhor plataforma de pagamentos do mundo!
 Abaixo você encontrará todos as informações necessárias para iniciar o seu teste.
 
 ## Avisos antes de começar
 
+- Certifique-se que você tenha acesso ao layout proposto no **Figma**, caso não tenha, solicite o acesso com o Recruiter
+
 - Para a entrega do teste você precisará ter two factor habilitado na sua conta do GitHub, você poderá ver o passo a passo nesse tutorial: https://help.github.com/pt/github/authenticating-to-github/configuring-two-factor-authentication
+
 - Com two factor habilitado, você precisa configurar a chave SSH: https://help.github.com/pt/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account
-- Para iniciar o teste, crie uma branch a partir da `master` nesse padrão de nomenclatura: dd-mm-yy/nome-sobrenome (por exemplo, 30-04-20/meu-nome)
+
+- **Para iniciar o teste, crie uma branch a partir da `master` nesse padrão de nomenclatura: dd-mm-yy/nome-sobrenome (por exemplo, 30-04-20/meu-nome)**
+
 - Você poderá consultar o Google, Stackoverflow ou algum projeto particular na sua máquina.
 - Fique à vontade para perguntar qualquer dúvida aos recrutadores.
+
 - Fique tranquilo, respire, assim como você, também já passamos por essa etapa. Boa sorte! :)
 
 ## Setup do projeto
@@ -24,119 +30,85 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 - Na raiz do repositório, rode este comando `ng serve` para iniciar o servidor de desenvolvimento.
 - A Aplicação estará disponível na porta `http://localhost:4200/`
 
-## Como submeter?
+<br/>
 
-- Commite suas alterações de forma organizada;
-- Após o prazo dado para a realização do teste, será dada permissão para fazer o push/ abrir a pull request, abra uma pull request da sua branch para a master com a nomenclatura: Nome Sobrenome - dd-mm-yy
+### Leia com atenção! ⚠️
 
-_Obs: Caso não tenha recebido permissão para realizar o push da branch entre em contato com o recrutador e envie seu usuário do GitHub_
+**1 -** Nosso desafio consiste de uma aplicação (CRUD), que traz uma tabela de itens e que deverá ter paginação. No layout proposto há um botão de filtragem dos itens, isso é um plus que pode contar mais pontos. Esta aplicação consiste de uma tela de login (consultar usuário no fim deste arquivo), para que você tenha acesso à tela de listagem (home). Você poderá utilizar a lib de components que quiser, mas desde que siga o mínimo do layout proposto. Você pode implementar novas features, melhorar o design, tudo que você fizer contará pontos!
 
-## Objetivo
+**2 -** Temos uma API mock (JSON Server) na qual você utilizará para implementar os seus serviços de CRUD. Os dados estão armazenados no arquivo `db.json` na raiz do projeto.
 
-O objetivo é construir uma aplicação que simula o envio de dinheiro para uma outra pessoa, via cartão de crédito.
+**3 -** Certifique-se de revisar seu código, a modo que fique o mais organizado possível para a avaliação e entendimento dos avaliadores.
 
-## Fluxo das telas
+**4 -** Utilize a estrutura de pastas que achar mais adequada, bem como padrões, patterns, práticas de segurança, performance etc.
 
-Na primeira tela terá uma listagem de usuários, onde a pessoa pode clicar em algum usuário da lista para realizar o pagamento. Quando clicado em um usuário é então aberto um modal de pagamento, contendo as informações do usuário de destino, a opção de selecionar um cartão de crédito e um botão de pagar. O usuário deve então digitar o valor, escolher o cartão e clicar em pagar. Para realização do pagamento deve-se chamar um endpoint de pagamento que aprovará/recusará a transação. E então deve-se mostrar na tela o modal de pagamento concluído com sucesso ou o de erro.
+**5 -** Caso você seja JR e tenha algum receio, não se preocupe, iremos avaliar o que foi entregue, mesmo com pendências.
 
-## Screenshots
+**6 -** O diferencial para este desafio, é o aprimoramento do mesmo, bem como implementação de práticas de segurança, performance e/ou estrutura.
+<br/>
+<br/>
 
-### Lista de usuários
+### **API**
 
-<img src="./screenshots/lista-usuarios.png" alt="Lista de usuários" style="width: 100%; max-width: 500px;">
+Para o seu desafio ser mais interativo, estamos utilizando um mock de API, chamado JSON Server. Portanto, é necessário que você instale-o globalmente em sua máquina para ter os recursos da lib.
 
-### Modal de pagamento e listagem de cartões
+**1 -** Como instalar? <br/>
+`npm install -g json-server`
 
-<img src="./screenshots/modal-pagamento.png" alt="Modal de pagamento" style="width: 100%; max-width: 400px;">
+**2 -** e para rodar (deixar aberto em uma outra aba do terminal, para que ele fique escutando suas ações de CRUD!), digite o seguinte comando na RAÍZ do projeto: `npm run api`
 
-### Modal de pagamento concluído com sucesso
+Link para mais detalhes: https://github.com/typicode/json-server
 
-<img src="./screenshots/modal-sucesso.png" alt="Modal de pagamento com sucesso" style="width: 100%; max-width: 400px;">
+**Rotas:** <br />
+`GET: /tasks`<br />
+`POST: /tasks`<br />
+`PUT: /tasks`<br />
+`PATCH: /tasks`<br />
+`DELETE: /tasks`<br />
 
-### Modal de erro no pagamento
+`GET: /account` <br />
+`POST: /account` <br />
+`PUT: /account` <br />
+`PATCH: /account` <br />
+`DELETE: /account` <br />
+<br/>
 
-<img src="./screenshots/modal-falha.png" alt="Modal de erro no pagamento" style="width: 100%; max-width: 400px;">
+### **Models**:<br />
 
-#
+Tasks - Esta é sua lista com agenda de pagamentos. Aqui você cadastrar, editar e excluir um pagamento.<br />
+` { "id": 5, "name": "Anthea Pundy", "username": "apundy4", "title": "Software Engineer III", "value": 177.19, "date": "2021-01-01T14:09:51Z", "image": "https://robohash.org/quiaautomnis.png?size=150x150&set=set1", "isPayed": true },`
 
-## Cartões para exibir
+Account - você usará este usuário para Login da plataforma<br />
+`{ "id": 0, "name": "usuario", "email": "usuario@gmail.com", "password": "usuario" }`
 
-O cartão válido vai aprovar a transação no backend;
+<br/>
 
-```javascript
-let cards = [
-  // valid card
-  {
-    card_number: '1111111111111111',
-    cvv: 789,
-    expiry_date: '01/18',
-  },
-  // invalid card
-  {
-    card_number: '4111111111111234',
-    cvv: 123,
-    expiry_date: '01/20',
-  },
-];
-```
+### **Parametros da API (Json Server):**
 
-#
+paginate:<br />
+`GET: /tasks?_page=7` <br />
+`GET: /tasks?_page=7&_limit=20`
 
-## Transação
+**Usuário para utilizar no login:**<br />
+` "email": "usuario@gmail.com", "password": "usuario"`
+<br/>
+<br/>
 
-### Endpoint: https://run.mocky.io/v3/533cd5d7-63d3-4488-bf8d-4bb8c751c989
+**Orientações e dicas:**
 
-### Método: POST
+- Esperamos que você consiga completar o mínimo do desafio; Mas não se esqueça, que aqui no PicPay é muito concorrido, então você irá concorrer com outras pessoas desenvolvedoras que também querem muito trabalhar conosco, então, arrebenta, mostre o seu melhor! 😉
 
-```typescript
-// Payload:
+- Iremos avaliar cada feature, conceito, pattern, tudo o que você fizer de adicional. Tudo além do proposta contará pontos!
 
-interface TransactionPayload {
-  // Card Info
-  card_number: string;
-  cvv: number;
-  expiry_date: string;
+- Caso você esteja concorrendo a uma vaga de Sênior, testes unitários são necessários no teste. Se você estiver concorrendo a uma vaga de JR ou Pleno, não é obrigatorio, mas é um grande diferencial caso seja aplicado os testes.
 
-  // Destination User ID
-  destination_user_id: number;
+- Faça commits regulares. Eles são melhores do que um commit gigantesco. Gostaríamos de ver commits organizados e padronizados, então capriche neles!
 
-  // Value of the Transaction
-  value: number;
-}
-```
+### **Links úteis**:
 
-_Obs: Por se tratar de um mock o endpoint sempre retornará o mesmo payload, sucesso no pagamento, independente do cartão_
+https://github.com/BeeTech-global/bee-stylish/tree/master/commits
+https://www.conventionalcommits.org/en/v1.0.0/
 
-#
+Qualquer problema por favor contate seu recruiter.
 
-## Usuários
-
-### Endpoint: https://www.mocky.io/v2/5d531c4f2e0000620081ddce
-
-### Método: GET
-
-```typescript
-// Payload:
-
-interface User {
-  id: number;
-  name: string;
-  img: string;
-  username: string;
-}
-```
-
-#
-
-## Diferenciais
-
-- Teste unitário / E2E
-- Melhoria no estilo da aplicação
-- Validação de formulários e máscaras
-- Organização do código
-
-#
-
-Estamos sempre em busca de melhoria, por isso, caso tenha alguma sugestão fique a vontade pra compartilhar com a gente!
-
-Mais uma vez, boa sorte! :green_heart:
+**BOA SORTE !** 😉😉😉
