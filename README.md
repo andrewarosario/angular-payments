@@ -12,7 +12,7 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 - Com two factor habilitado, você precisa configurar a chave SSH: https://help.github.com/pt/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account
 
 - **Para iniciar o teste, crie uma branch a partir da `master` nesse padrão de nomenclatura: dd-mm-yy/nome-sobrenome (por exemplo, 30-04-20/meu-nome)**
-- **Quando finalizar o teste, cria uma PR da sua branch para a master e avise o(a) recrutador(a) que o teste está finalizado.**
+- **Quando finalizar o teste, crie uma PR (Pull Request) da sua branch para a master e avise o(a) recrutador(a) que o teste está finalizado.**
 - Você poderá consultar o Google, Stackoverflow ou algum projeto particular na sua máquina.
 - Fique à vontade para perguntar qualquer dúvida aos recrutadores.
 
