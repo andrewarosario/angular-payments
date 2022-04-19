@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LogoComponentModule } from "src/app/components/logo/logo.component.module";
+import { LoginFormModule } from "./login-form/login-form.module";
 
 import { LoginPageComponent } from "./login-page.component";
 
@@ -9,7 +11,7 @@ describe(LoginPageComponent.name, () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LogoComponentModule],
+      imports: [BrowserAnimationsModule, LogoComponentModule, LoginFormModule],
       declarations: [LoginPageComponent],
     }).compileComponents();
   });

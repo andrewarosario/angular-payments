@@ -1,0 +1,57 @@
+<form class="form" [formGroup]="form" (ngSubmit)="submit()">
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input
+      matInput
+      placeholder="Email"
+      formControlName="email"
+      name="email"
+      type="email"
+      required
+    />
+    <mat-error
+      id="email-required"
+      *ngIf="form.controls.email.hasError('required')"
+      >Email é obrigatório</mat-error
+    >
+    <mat-error id="email-invalid" *ngIf="form.controls.email.hasError('email')"
+      >Email inválido</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Senha</mat-label>
+    <input
+      matInput
+      [type]="hidePassword ? 'password' : 'text'"
+      placeholder="Senha"
+      formControlName="password"
+      name="password"
+    />
+    <mat-error
+      id="password-required"
+      *ngIf="form.controls.password.hasError('required')"
+      >Senha é obrigatória</mat-error
+    >
+    <mat-error
+      id="password-minlength"
+      *ngIf="form.controls.password.hasError('minlength')"
+      >Senha deve possuir no mínimo 6 caracteres</mat-error
+    >
+    <mat-icon
+      id="password-visibility"
+      matSuffix
+      (click)="changePasswordVisibility()"
+      >{{ hidePassword ? "visibility_off" : "visibility" }}</mat-icon
+    >
+  </mat-form-field>
+
+  <button
+    color="primary"
+    mat-raised-button
+    type="submit"
+    [disabled]="form.invalid"
+  >
+    Entrar
+  </button>
+</form>
