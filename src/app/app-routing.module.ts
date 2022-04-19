@@ -10,6 +10,13 @@ const routes: Routes = [
         (m) => m.LoginPageModule
       ),
   },
+  {
+    path: "payments",
+    loadChildren: () =>
+      import("./pages/payments-page/payments-page.module").then(
+        (m) => m.PaymentsPageModule
+      ),
+  },
 ];
 
 @NgModule({
