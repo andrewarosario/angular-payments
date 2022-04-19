@@ -3,7 +3,7 @@
     <div class="form-content">
       <app-logo></app-logo>
       <h2 class="welcome">Bem vindo de volta</h2>
-      <app-login-form></app-login-form>
+      <app-login-form (submitForm)="submitForm($event)"></app-login-form>
     </div>
   </div>
   <div class="login__image">
