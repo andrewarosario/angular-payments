@@ -4,24 +4,27 @@ import { RouterTestingModule } from "@angular/router/testing";
 import { LogoComponentModule } from "src/app/components/logo/logo.component.module";
 import { AuthService } from "src/app/services/auth/auth.service";
 import { LoginFormModule } from "./login-form/login-form.module";
-import { of } from "rxjs";
+import { of, throwError } from "rxjs";
 
 import { LoginPageComponent } from "./login-page.component";
 import { mockUser } from "src/app/mocks/user.mock";
 import { By } from "@angular/platform-browser";
 import { LoginFormComponent } from "./login-form/login-form.component";
 import { Router } from "@angular/router";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 describe(LoginPageComponent.name, () => {
   let component: LoginPageComponent;
   let fixture: ComponentFixture<LoginPageComponent>;
   let authServiceSpy: jasmine.SpyObj<AuthService>;
+  let matSnackBarSpy: jasmine.SpyObj<MatSnackBar>;
   let router: Router;
 
   beforeEach(async () => {
     authServiceSpy = jasmine.createSpyObj<AuthService>("AuthService", {
       auth: of(mockUser),
     });
+    matSnackBarSpy = jasmine.createSpyObj<MatSnackBar>("MatSnackBar", ["open"]);
     await TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
@@ -30,7 +33,10 @@ describe(LoginPageComponent.name, () => {
         LoginFormModule,
       ],
       declarations: [LoginPageComponent],
-      providers: [{ provide: AuthService, useValue: authServiceSpy }],
+      providers: [
+        { provide: AuthService, useValue: authServiceSpy },
+        { provide: MatSnackBar, useValue: matSnackBarSpy },
+      ],
     }).compileComponents();
 
     router = TestBed.inject(Router);
@@ -62,5 +68,17 @@ describe(LoginPageComponent.name, () => {
     ).componentInstance;
     loginFormComponent.submitForm.emit();
     expect(router.navigateByUrl).toHaveBeenCalledWith("payments");
+  });
+
+  it("should display snack bar on authentication failure", () => {
+    authServiceSpy.auth.and.returnValue(throwError("login fail"));
+    const loginFormComponent: LoginFormComponent = fixture.debugElement.query(
+      By.directive(LoginFormComponent)
+    ).componentInstance;
+    loginFormComponent.submitForm.emit();
+    expect(matSnackBarSpy.open).toHaveBeenCalledWith("login fail", "Fechar", {
+      verticalPosition: "top",
+      duration: 2000,
+    });
   });
 });
