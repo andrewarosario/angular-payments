@@ -1,0 +1,20 @@
+@import "src/styles/variables";
+
+.logo {
+  font-family: "Montserrat";
+  font-size: 24px;
+
+  &__pay {
+    font-weight: 800;
+    color: $color-primary-dark;
+  }
+
+  &__friends {
+    font-weight: 400;
+    color: $color-primary;
+  }
+}
+
+.logo--white {
+  color: $color-white;
+}
