@@ -21,7 +21,10 @@ describe(AuthService.name, () => {
     authUserStoreSpy = jasmine.createSpyObj<AuthUserStore>("AuthUserStore", [
       "setUser",
     ]);
-    storageSpy = jasmine.createSpyObj<Storage>("Storage", ["setData"]);
+    storageSpy = jasmine.createSpyObj<Storage>("Storage", [
+      "setData",
+      "getData",
+    ]);
 
     TestBed.configureTestingModule({
       providers: [
@@ -58,5 +61,17 @@ describe(AuthService.name, () => {
       expect(storageSpy.setData).toHaveBeenCalledWith(AUTH_USER_KEY, mockUser);
       done();
     });
+  });
+
+  it("should set user from storage", () => {
+    storageSpy.getData.and.returnValue(mockUser);
+    service.setUserFromStorage();
+    expect(authUserStoreSpy.setUser).toHaveBeenCalledWith(mockUser);
+  });
+
+  it("should not set user from storage", () => {
+    storageSpy.getData.and.returnValue(null);
+    service.setUserFromStorage();
+    expect(authUserStoreSpy.setUser).not.toHaveBeenCalled();
   });
 });

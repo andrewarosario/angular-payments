@@ -31,6 +31,13 @@ export class AuthService {
     );
   }
 
+  setUserFromStorage(): void {
+    const user = this.storage.getData<User>(AUTH_USER_KEY);
+    if (user) {
+      this.authUserStore.setUser(user);
+    }
+  }
+
   private saveUserToStorage(user: User): void {
     this.storage.setData(AUTH_USER_KEY, user);
   }
