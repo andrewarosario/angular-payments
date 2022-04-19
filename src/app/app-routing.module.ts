@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { AuthGuard } from "./guards/auth/auth.guard";
 
 const routes: Routes = [
   { path: "", redirectTo: "/login", pathMatch: "full" },
@@ -12,6 +13,7 @@ const routes: Routes = [
   },
   {
     path: "payments",
+    canLoad: [AuthGuard],
     loadChildren: () =>
       import("./pages/payments-page/payments-page.module").then(
         (m) => m.PaymentsPageModule
