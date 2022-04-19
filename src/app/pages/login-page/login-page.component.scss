@@ -1,0 +1,22 @@
+@import "src/styles/variables";
+
+.login {
+  display: flex;
+  height: 100vh;
+
+  @media only screen and (max-width: $bp-medium) {
+    flex-direction: column;
+  }
+
+  &__form {
+    flex: 0 0 37.5%;
+  }
+
+  &__image {
+    flex: 1;
+    background-color: $color-white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
