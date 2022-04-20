@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { NavbarComponentModule } from "src/app/components/navbar/navbar.component.module";
 
 import { PaymentsPageComponent } from "./payments-page.component";
+import { PaymentsPageModule } from "./payments-page.module";
 
 describe("PaymentsPageComponent", () => {
   let component: PaymentsPageComponent;
@@ -9,8 +9,7 @@ describe("PaymentsPageComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NavbarComponentModule],
-      declarations: [PaymentsPageComponent],
+      imports: [PaymentsPageModule],
     }).compileComponents();
   });
 

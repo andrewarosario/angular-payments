@@ -3,6 +3,7 @@
 .new-payment {
   display: flex;
   flex-direction: row-reverse;
+  margin-bottom: 16px;
 
   @media only screen and (max-width: $bp-small) {
     flex-direction: row;
