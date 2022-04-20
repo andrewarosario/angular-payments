@@ -1,7 +1,13 @@
-<table mat-table [dataSource]="payments" class="ui-table">
+<table
+  mat-table
+  matSort
+  [dataSource]="payments"
+  class="ui-table"
+  (matSortChange)="sortChange.emit($event)"
+>
   <!-- Name Column -->
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>Usuário</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header="name">Usuário</th>
     <td mat-cell *matCellDef="let element">
       <div class="ui-table__cell_column">
         <span>{{ element.name }}</span>
@@ -12,13 +18,13 @@
 
   <!-- Title Column -->
   <ng-container matColumnDef="title">
-    <th mat-header-cell *matHeaderCellDef>Título</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header="title">Título</th>
     <td mat-cell *matCellDef="let element">{{ element.title }}</td>
   </ng-container>
 
   <!-- Date Column -->
   <ng-container matColumnDef="date">
-    <th mat-header-cell *matHeaderCellDef>Data</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header="date">Data</th>
     <td mat-cell *matCellDef="let element">
       <div class="ui-table__cell_column">
         <span>{{ element.date | date: "dd MMM yyyy" }}</span>
@@ -31,7 +37,7 @@
 
   <!-- Value Column -->
   <ng-container matColumnDef="value">
-    <th mat-header-cell *matHeaderCellDef>Valor</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header="value">Valor</th>
     <td mat-cell *matCellDef="let element">
       {{ element.value | currency: "BRL" }}
     </td>
@@ -39,7 +45,14 @@
 
   <!-- Is Payed Column -->
   <ng-container matColumnDef="isPayed">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header="isPayed">Pago</th>
+    <th
+      mat-header-cell
+      *matHeaderCellDef
+      mat-sort-header="isPayed"
+      mat-sort-header="isPayed"
+    >
+      Pago
+    </th>
     <td mat-cell *matCellDef="let element">
       <mat-checkbox [checked]="element.isPayed" color="primary"></mat-checkbox>
     </td>

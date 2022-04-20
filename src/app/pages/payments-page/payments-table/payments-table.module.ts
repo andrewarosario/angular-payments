@@ -6,12 +6,14 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { CommonModule } from "@angular/common";
+import { MatSortModule } from "@angular/material/sort";
 
 @NgModule({
   declarations: [PaymentsTableComponent],
   imports: [
     CommonModule,
     MatTableModule,
+    MatSortModule,
     MatCheckboxModule,
     MatIconModule,
     MatButtonModule,

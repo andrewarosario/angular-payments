@@ -1,9 +1,17 @@
 <app-navbar></app-navbar>
 
 <main class="ui-container">
-  <h1 class="ui-title">Meus pagamentos</h1>
-  <div class="new-payment">
-    <button color="primary" mat-raised-button>Adicionar pagamento</button>
-  </div>
-  <app-payments-table></app-payments-table>
+  <ng-container appListData #appListData="appListData">
+    <h1 class="ui-title">Meus pagamentos</h1>
+    <div class="new-payment">
+      <button color="primary" mat-raised-button>Adicionar pagamento</button>
+    </div>
+    <app-payments-filter
+      [searchParams]="appListData.searchParams"
+      [total]="appListData.total$ | async"
+    ></app-payments-filter>
+    <app-payments-table
+      [payments]="appListData.dataSource$ | async"
+    ></app-payments-table>
+  </ng-container>
 </main>

@@ -1,15 +1,21 @@
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { PaymentsPageComponent } from "./payments-page.component";
 import { PaymentsPageModule } from "./payments-page.module";
 
-describe("PaymentsPageComponent", () => {
+describe(PaymentsPageComponent.name, () => {
   let component: PaymentsPageComponent;
   let fixture: ComponentFixture<PaymentsPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PaymentsPageModule],
+      imports: [
+        PaymentsPageModule,
+        HttpClientTestingModule,
+        BrowserAnimationsModule,
+      ],
     }).compileComponents();
   });
 
