@@ -1,0 +1,34 @@
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
+import { Payment } from "src/app/models/payment";
+import {
+  Params,
+  SearchParams,
+} from "src/app/shared/list-data/models/search-params";
+import { ListDataApi } from "src/app/shared/list-data/interfaces/list-data-api.interface";
+import { environment } from "src/environments/environment";
+
+@Injectable({
+  providedIn: "root",
+})
+export class PaymentApiService implements ListDataApi<Payment> {
+  private readonly baseURL = "tasks";
+
+  constructor(private http: HttpClient) {}
+
+  list(params: SearchParams): Observable<Payment[]> {
+    return this.http.get<Payment[]>(`${environment.urlApi}/${this.baseURL}`, {
+      params: { ...params },
+    });
+  }
+
+  getCount(params: Params): Observable<number> {
+    return this.http
+      .get<Payment[]>(`${environment.urlApi}/${this.baseURL}`, {
+        params: { ...params },
+      })
+      .pipe(map((payments) => payments.length));
+  }
+}
