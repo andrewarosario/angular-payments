@@ -1,0 +1,12 @@
+<div>
+  <mat-form-field appearance="outline">
+    <mat-label>Pesquisar</mat-label>
+    <input type="text" matInput [formControl]="searchControl" />
+  </mat-form-field>
+  <mat-paginator
+    [pageSizeOptions]="pageSizeOptions"
+    [pageSize]="searchParams?._limit"
+    [length]="total"
+    (page)="pageChange.emit($event)"
+  ></mat-paginator>
+</div>
