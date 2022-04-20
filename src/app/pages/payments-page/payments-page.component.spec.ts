@@ -20,7 +20,8 @@ describe("PaymentsPageComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
-    expect(component).toBeTruthy();
+  it("should render title", () => {
+    const logoElement = fixture.nativeElement.querySelector(".ui-title");
+    expect(logoElement.textContent.trim()).toBe("Meus pagamentos");
   });
 });

@@ -1,0 +1,10 @@
+@import "src/styles/variables";
+
+.new-payment {
+  display: flex;
+  flex-direction: row-reverse;
+
+  @media only screen and (max-width: $bp-small) {
+    flex-direction: row;
+  }
+}
