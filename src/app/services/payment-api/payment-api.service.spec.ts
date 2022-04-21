@@ -1,19 +1,49 @@
-import { HttpClientTestingModule } from "@angular/common/http/testing";
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from "@angular/common/http/testing";
 import { TestBed } from "@angular/core/testing";
+import { mockPayments } from "src/app/mocks/payments.mock";
+import { environment } from "src/environments/environment";
 
 import { PaymentApiService } from "./payment-api.service";
 
-describe("PaymentApiService", () => {
+describe(PaymentApiService.name, () => {
   let service: PaymentApiService;
+  let httpController: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
+      providers: [PaymentApiService],
     });
     service = TestBed.inject(PaymentApiService);
+    httpController = TestBed.inject(HttpTestingController);
   });
 
-  it("should be created", () => {
-    expect(service).toBeTruthy();
+  afterEach(() => httpController.verify());
+
+  it(`#${PaymentApiService.prototype.list.name} should return
+      payments`, (done) => {
+    service.list({ _limit: 5, _page: 1 }).subscribe((payments) => {
+      expect(payments).toEqual(mockPayments);
+      done();
+    });
+
+    httpController
+      .expectOne(`${environment.urlApi}/tasks?_limit=5&_page=1`)
+      .flush(mockPayments);
+  });
+
+  it(`#${PaymentApiService.prototype.getCount.name} should
+  payments count`, (done) => {
+    service.getCount({ title_like: "any-payment" }).subscribe((payments) => {
+      expect(payments).toEqual(mockPayments.length);
+      done();
+    });
+
+    httpController
+      .expectOne(`${environment.urlApi}/tasks?title_like=any-payment`)
+      .flush(mockPayments);
   });
 });
