@@ -5,6 +5,7 @@ import { PaymentsFilterComponent } from "./payments-filter.component";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatInputModule } from "@angular/material/input";
+import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
   declarations: [PaymentsFilterComponent],
@@ -12,6 +13,7 @@ import { MatInputModule } from "@angular/material/input";
     CommonModule,
     ReactiveFormsModule,
     MatInputModule,
+    MatIconModule,
     MatFormFieldModule,
     MatPaginatorModule,
   ],

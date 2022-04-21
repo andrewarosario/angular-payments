@@ -1,8 +1,13 @@
-<div>
-  <mat-form-field appearance="outline">
-    <mat-label>Pesquisar</mat-label>
-    <input type="text" matInput [formControl]="searchControl" />
-  </mat-form-field>
+<div class="ui-table-header">
+  <div class="ui-table-header__search-input">
+    <input
+      type="text"
+      matInput
+      [formControl]="searchControl"
+      placeholder="Pesquisar por usuário"
+    />
+    <mat-icon>search</mat-icon>
+  </div>
   <mat-paginator
     [pageSizeOptions]="pageSizeOptions"
     [pageSize]="searchParams?._limit"
