@@ -20,15 +20,29 @@ export class PaymentApiService implements ListDataApi<Payment> {
 
   list(params: SearchParams): Observable<Payment[]> {
     return this.http.get<Payment[]>(`${environment.urlApi}/${this.baseURL}`, {
-      params: { ...params },
+      params,
     });
   }
 
   getCount(params: Params): Observable<number> {
     return this.http
       .get<Payment[]>(`${environment.urlApi}/${this.baseURL}`, {
-        params: { ...params },
+        params,
       })
       .pipe(map((payments) => payments.length));
+  }
+
+  create(payment: Payment): Observable<Payment> {
+    return this.http.post<Payment>(
+      `${environment.urlApi}/${this.baseURL}`,
+      payment
+    );
+  }
+
+  update(id: number, payment: Partial<Payment>): Observable<Payment> {
+    return this.http.patch<Payment>(
+      `${environment.urlApi}/${this.baseURL}/${id}`,
+      payment
+    );
   }
 }

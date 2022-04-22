@@ -23,8 +23,7 @@ describe(PaymentApiService.name, () => {
 
   afterEach(() => httpController.verify());
 
-  it(`#${PaymentApiService.prototype.list.name} should return
-      payments`, (done) => {
+  it(`#${PaymentApiService.prototype.list.name} should return payments`, (done) => {
     service.list({ _limit: 5, _page: 1 }).subscribe((payments) => {
       expect(payments).toEqual(mockPayments);
       done();
@@ -35,8 +34,7 @@ describe(PaymentApiService.name, () => {
       .flush(mockPayments);
   });
 
-  it(`#${PaymentApiService.prototype.getCount.name} should
-  payments count`, (done) => {
+  it(`#${PaymentApiService.prototype.getCount.name} should return payments count`, (done) => {
     service.getCount({ title_like: "any-payment" }).subscribe((payments) => {
       expect(payments).toEqual(mockPayments.length);
       done();
@@ -45,5 +43,27 @@ describe(PaymentApiService.name, () => {
     httpController
       .expectOne(`${environment.urlApi}/tasks?title_like=any-payment`)
       .flush(mockPayments);
+  });
+
+  it(`#${PaymentApiService.prototype.create.name} should return created payment`, (done) => {
+    const [mockPayment] = mockPayments;
+    service.create(mockPayment).subscribe((payment) => {
+      expect(payment).toEqual(mockPayment);
+      done();
+    });
+
+    httpController.expectOne(`${environment.urlApi}/tasks`).flush(mockPayment);
+  });
+
+  it(`#${PaymentApiService.prototype.update.name} should return updated payment`, (done) => {
+    const [mockPayment] = mockPayments;
+    service.update(mockPayment.id, mockPayment).subscribe((payment) => {
+      expect(payment).toEqual(mockPayment);
+      done();
+    });
+
+    httpController
+      .expectOne(`${environment.urlApi}/tasks/${mockPayment.id}`)
+      .flush(mockPayment);
   });
 });
