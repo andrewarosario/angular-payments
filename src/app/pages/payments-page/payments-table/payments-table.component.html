@@ -70,6 +70,7 @@
         <mat-icon>edit</mat-icon>
       </button>
       <button
+        (click)="delete.emit(element)"
         matTooltip="Excluir"
         aria-label="Excluir pagamento"
         mat-icon-button

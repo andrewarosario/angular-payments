@@ -1,0 +1,14 @@
+.ui-modal {
+  h1 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 50px;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 29px;
+  }
+}

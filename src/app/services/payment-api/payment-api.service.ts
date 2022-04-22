@@ -42,4 +42,10 @@ export class PaymentApiService implements ListDataApi<Payment> {
       payment
     );
   }
+
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(
+      `${environment.urlApi}/${this.baseURL}/${id}`
+    );
+  }
 }

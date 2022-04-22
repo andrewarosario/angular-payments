@@ -13,7 +13,7 @@ export class PaymentFormModalComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<PaymentFormModalComponent>,
-    @Inject(MAT_DIALOG_DATA) private payment: Payment,
+    @Inject(MAT_DIALOG_DATA) public payment: Payment,
     private formBuilder: FormBuilder
   ) {}
 

@@ -3,7 +3,7 @@
 <main class="ui-container">
   <h1 class="ui-title">Meus pagamentos</h1>
   <div class="new-payment">
-    <button color="primary" mat-raised-button (click)="openModal()">
+    <button color="primary" mat-raised-button (click)="openFormModal()">
       Adicionar pagamento
     </button>
   </div>
@@ -13,7 +13,8 @@
     ></app-payments-filter>
     <app-payments-table
       [payments]="appListData.dataSource$ | async"
-      (edit)="openModal($event)"
+      (edit)="openFormModal($event)"
+      (delete)="openDeleteModal($event)"
       (togglePayed)="togglePayed($event)"
     ></app-payments-table>
   </div>

@@ -16,6 +16,7 @@ export class PaymentsTableComponent implements SortEmitter {
   @Input() payments: Payment[] = [];
   @Output() sortChange = new EventEmitter<Sort>();
   @Output() edit = new EventEmitter<Payment>();
+  @Output() delete = new EventEmitter<Payment>();
   @Output() togglePayed = new EventEmitter<Payment>();
 
   readonly displayedColumns: string[] = [

@@ -1,0 +1,28 @@
+<div class="ui-modal">
+  <h1 mat-dialog-title>Excluir pagamento</h1>
+  <div mat-dialog-content>
+    <div class="payment-data">
+      <span>Usuário: {{ payment.name }}</span>
+      <span>Data: {{ payment.date | date: "dd/MM/yyyy" }}</span>
+      <span>Valor: {{ payment.value | currency: "BRL" }}</span>
+    </div>
+    <div class="ui-modal__actions">
+      <button
+        color="primary"
+        mat-raised-button
+        class="form-submit"
+        (click)="delete()"
+      >
+        Excluir
+      </button>
+      <button
+        type="button"
+        color="secondary"
+        mat-raised-button
+        (click)="cancel()"
+      >
+        Cancelar
+      </button>
+    </div>
+  </div>
+</div>
