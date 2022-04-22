@@ -7,6 +7,7 @@ import { CommonModule } from "@angular/common";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatButtonModule } from "@angular/material/button";
+import { CurrencyModule } from "src/app/core/currency/currency.module";
 
 @NgModule({
   declarations: [PaymentFormModalComponent],
@@ -18,6 +19,7 @@ import { MatButtonModule } from "@angular/material/button";
     MatInputModule,
     MatDatepickerModule,
     MatButtonModule,
+    CurrencyModule,
   ],
   exports: [PaymentFormModalComponent],
 })

@@ -35,7 +35,7 @@ export class PaymentFormModalComponent implements OnInit {
   private buildForm(): void {
     this.form = this.formBuilder.group({
       name: ["", [Validators.required]],
-      value: [0, [Validators.required]],
+      value: ["", [Validators.required]],
       date: [null, [Validators.required]],
       title: ["", [Validators.required]],
     });
