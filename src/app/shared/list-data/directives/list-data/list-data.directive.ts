@@ -1,6 +1,6 @@
 import { ContentChild, Directive, Inject, Input, OnInit } from "@angular/core";
-import { combineLatest, Observable } from "rxjs";
-import { map, switchMap } from "rxjs/operators";
+import { merge, Observable } from "rxjs";
+import { map, scan, startWith, switchMap } from "rxjs/operators";
 import {
   Params,
   SearchParams,
@@ -29,43 +29,51 @@ export class ListDataDirective<T> implements OnInit {
   @Input() searchField = "name";
 
   dataSource$: Observable<T[]>;
-  total$: Observable<number>;
 
   constructor(@Inject(LIST_DATA_API) private listDataApi: ListDataApi<T>) {}
 
   ngOnInit(): void {
     this.dataSource$ = this.getDataSource();
-    this.total$ = this.getTotal();
+    this.filterEmitter.total$ = this.getTotal();
   }
 
   private getDataSource(): Observable<T[]> {
-    return combineLatest([
+    return merge(
       this.pageObserver(),
       this.sortObserver(),
-      this.searchObserver(),
-    ]).pipe(
-      map(([page, sort, search]) => ({ ...page, ...sort, ...search })),
+      this.searchObserver()
+    ).pipe(
+      startWith(this.searchParams),
+      scan((acc, value) => ({ ...acc, ...value })),
       switchMap((params) => this.listDataApi.list(params))
     );
   }
 
   private getTotal(): Observable<number> {
-    return this.searchObserver().pipe(
+    return this.filterEmitter.searchControl.valueChanges.pipe(
+      startWith({}),
+      mapSearch(this.searchField),
       switchMap((params) => this.listDataApi.getCount(params))
     );
   }
 
   private searchObserver(): Observable<Params> {
     return this.filterEmitter.searchControl.valueChanges.pipe(
-      mapSearch(this.searchField)
+      mapSearch(this.searchField),
+      map((search) => this.resetPagination(search))
     );
   }
 
   private pageObserver(): Observable<SearchParams> {
-    return this.filterEmitter.pageChange.pipe(mapPage(this.searchParams));
+    return this.filterEmitter.pageChange.pipe(mapPage());
   }
 
-  private sortObserver() {
+  private sortObserver(): Observable<Params> {
     return this.sortEmitter.sortChange.pipe(mapSort());
+  }
+
+  private resetPagination(search: Params): Params {
+    this.filterEmitter.paginator.firstPage();
+    return { ...search, _page: 1 };
   }
 }

@@ -11,7 +11,7 @@
   <mat-paginator
     [pageSizeOptions]="pageSizeOptions"
     [pageSize]="searchParams?._limit"
-    [length]="total"
+    [length]="total$ | async"
     (page)="pageChange.emit($event)"
   ></mat-paginator>
 </div>

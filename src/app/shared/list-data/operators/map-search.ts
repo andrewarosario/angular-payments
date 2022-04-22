@@ -12,8 +12,7 @@ export function mapSearch(searchField: string) {
     return source.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      map((search: string) => ({ [searchField + "_like"]: search })),
-      startWith({ [searchField + "_like"]: "" })
+      map((search: string) => ({ [searchField + "_like"]: search }))
     );
   };
 }

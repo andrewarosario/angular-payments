@@ -1,12 +1,9 @@
 import { InjectionToken } from "@angular/core";
 import { Observable } from "rxjs";
-import {
-  Params,
-  SearchParams,
-} from "src/app/shared/list-data/models/search-params";
+import { Params } from "src/app/shared/list-data/models/search-params";
 
 export interface ListDataApi<T> {
-  list(params: SearchParams): Observable<T[]>;
+  list(params: Params): Observable<T[]>;
   getCount(params: Params): Observable<number>;
 }
 

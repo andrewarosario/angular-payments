@@ -10,7 +10,6 @@
   <div class="ui-table-container" appListData #appListData="appListData">
     <app-payments-filter
       [searchParams]="appListData.searchParams"
-      [total]="appListData.total$ | async"
     ></app-payments-filter>
     <app-payments-table
       [payments]="appListData.dataSource$ | async"

@@ -3,10 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { Payment } from "src/app/models/payment";
-import {
-  Params,
-  SearchParams,
-} from "src/app/shared/list-data/models/search-params";
+import { Params } from "src/app/shared/list-data/models/search-params";
 import { ListDataApi } from "src/app/shared/list-data/interfaces/list-data-api.interface";
 import { environment } from "src/environments/environment";
 
@@ -18,7 +15,7 @@ export class PaymentApiService implements ListDataApi<Payment> {
 
   constructor(private http: HttpClient) {}
 
-  list(params: SearchParams): Observable<Payment[]> {
+  list(params: Params): Observable<Payment[]> {
     return this.http.get<Payment[]>(`${environment.urlApi}/${this.baseURL}`, {
       params,
     });
