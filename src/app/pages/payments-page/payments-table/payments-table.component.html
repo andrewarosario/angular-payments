@@ -55,7 +55,12 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef class="ui-table__column-end"></th>
     <td mat-cell *matCellDef="let element" class="ui-table__column-end">
-      <button matTooltip="Editar" aria-label="Editar pagamento" mat-icon-button>
+      <button
+        (click)="edit.emit(element)"
+        matTooltip="Editar"
+        aria-label="Editar pagamento"
+        mat-icon-button
+      >
         <mat-icon>edit</mat-icon>
       </button>
       <button

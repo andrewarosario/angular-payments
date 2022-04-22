@@ -1,0 +1,29 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__row {
+    display: flex;
+    gap: 40px;
+
+    mat-form-field {
+      flex-grow: 1;
+      flex-basis: 0;
+      min-width: 0;
+      max-width: 200px;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+}
+
+.mat-dialog-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 50px;
+}

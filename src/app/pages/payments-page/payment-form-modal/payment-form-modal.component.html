@@ -1,0 +1,76 @@
+<h1 mat-dialog-title>Adicionar pagamento</h1>
+<div mat-dialog-content>
+  <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form__row">
+      <mat-form-field appearance="outline">
+        <mat-label>Usuário</mat-label>
+        <input
+          required
+          matInput
+          formControlName="name"
+          name="name"
+          placeholder="Usuário*"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Valor</mat-label>
+        <input
+          required
+          matInput
+          placeholder="R$ 0.00"
+          formControlName="value"
+          name="value"
+          type="number"
+          min="0.00"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="form__row">
+      <mat-form-field appearance="outline">
+        <mat-label>Data</mat-label>
+        <input
+          required
+          matInput
+          (focus)="picker.open()"
+          [matDatepicker]="picker"
+          name="date"
+          formControlName="date"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Título</mat-label>
+        <input
+          required
+          matInput
+          placeholder="Título"
+          formControlName="title"
+          name="title"
+        />
+      </mat-form-field>
+    </div>
+    <div class="form__actions">
+      <button
+        color="primary"
+        mat-raised-button
+        class="form-submit"
+        type="submit"
+        [disabled]="form.invalid"
+      >
+        Salvar
+      </button>
+      <button
+        type="button"
+        color="secondary"
+        mat-raised-button
+        (click)="cancel()"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>
