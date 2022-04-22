@@ -11,7 +11,9 @@
     <td mat-cell *matCellDef="let element">
       <div class="ui-table__cell_column">
         <span>{{ element.name }}</span>
-        <span class="ui-table__secondary-text">@{{ element.username }}</span>
+        <span *ngIf="element.username" class="ui-table__secondary-text"
+          >@{{ element.username }}</span
+        >
       </div>
     </td>
   </ng-container>

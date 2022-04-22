@@ -1,5 +1,5 @@
 import { ContentChild, Directive, Inject, Input, OnInit } from "@angular/core";
-import { merge, Observable } from "rxjs";
+import { BehaviorSubject, merge, Observable } from "rxjs";
 import { map, scan, startWith, switchMap } from "rxjs/operators";
 import {
   Params,
@@ -29,6 +29,9 @@ export class ListDataDirective<T> implements OnInit {
   @Input() searchField = "name";
 
   dataSource$: Observable<T[]>;
+  private updateSource$ = new BehaviorSubject<SearchParams | null>(
+    this.searchParams
+  );
 
   constructor(@Inject(LIST_DATA_API) private listDataApi: ListDataApi<T>) {}
 
@@ -37,13 +40,17 @@ export class ListDataDirective<T> implements OnInit {
     this.filterEmitter.total$ = this.getTotal();
   }
 
+  update() {
+    this.updateSource$.next(null);
+  }
+
   private getDataSource(): Observable<T[]> {
     return merge(
       this.pageObserver(),
       this.sortObserver(),
-      this.searchObserver()
+      this.searchObserver(),
+      this.updateSource$
     ).pipe(
-      startWith(this.searchParams),
       scan((acc, value) => ({ ...acc, ...value })),
       switchMap((params) => this.listDataApi.list(params))
     );
