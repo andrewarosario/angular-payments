@@ -1,22 +1,21 @@
 <app-navbar></app-navbar>
 
 <main class="ui-container">
-  <ng-container appListData #appListData="appListData">
-    <h1 class="ui-title">Meus pagamentos</h1>
-    <div class="new-payment">
-      <button color="primary" mat-raised-button (click)="openModal()">
-        Adicionar pagamento
-      </button>
-    </div>
-    <div class="ui-table-container">
-      <app-payments-filter
-        [searchParams]="appListData.searchParams"
-        [total]="appListData.total$ | async"
-      ></app-payments-filter>
-      <app-payments-table
-        [payments]="appListData.dataSource$ | async"
-        (edit)="openModal($event)"
-      ></app-payments-table>
-    </div>
-  </ng-container>
+  <h1 class="ui-title">Meus pagamentos</h1>
+  <div class="new-payment">
+    <button color="primary" mat-raised-button (click)="openModal()">
+      Adicionar pagamento
+    </button>
+  </div>
+  <div class="ui-table-container" appListData #appListData="appListData">
+    <app-payments-filter
+      [searchParams]="appListData.searchParams"
+      [total]="appListData.total$ | async"
+    ></app-payments-filter>
+    <app-payments-table
+      [payments]="appListData.dataSource$ | async"
+      (edit)="openModal($event)"
+      (togglePayed)="togglePayed($event)"
+    ></app-payments-table>
+  </div>
 </main>

@@ -31,4 +31,10 @@ export class PaymentsPageComponent {
       )
       .subscribe(() => console.log("salvo"));
   }
+
+  togglePayed(payment: Payment): void {
+    this.paymentApiService
+      .update(payment.id, { isPayed: !payment.isPayed })
+      .subscribe();
+  }
 }

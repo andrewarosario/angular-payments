@@ -26,7 +26,7 @@ export class ListDataDirective<T> implements OnInit {
   @ContentChild(SORT_EMITTER, { static: true }) sortEmitter: SortEmitter;
 
   @Input() searchParams: SearchParams = { _limit: 5, _page: 1 };
-  @Input() searchField = "title";
+  @Input() searchField = "name";
 
   dataSource$: Observable<T[]>;
   total$: Observable<number>;
