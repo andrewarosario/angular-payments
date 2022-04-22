@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
-import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import { LoginForm } from "src/app/models/login-form";
 import { AuthService } from "src/app/services/auth/auth.service";
+import { MessageService } from "src/app/shared/message/message.service";
 
 @Component({
   templateUrl: "./login-page.component.html",
@@ -14,17 +14,13 @@ export class LoginPageComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private matSnackBar: MatSnackBar
+    private messageService: MessageService
   ) {}
 
   submitForm(userData: LoginForm): void {
     this.authService.auth(userData).subscribe(
       () => this.router.navigateByUrl("payments"),
-      (err) =>
-        this.matSnackBar.open(err, "Fechar", {
-          verticalPosition: "top",
-          duration: 2000,
-        })
+      (error) => this.messageService.open(error)
     );
   }
 }

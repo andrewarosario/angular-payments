@@ -11,20 +11,22 @@ import { mockUser } from "src/app/mocks/user.mock";
 import { By } from "@angular/platform-browser";
 import { LoginFormComponent } from "./login-form/login-form.component";
 import { Router } from "@angular/router";
-import { MatSnackBar } from "@angular/material/snack-bar";
+import { MessageService } from "src/app/shared/message/message.service";
 
 describe(LoginPageComponent.name, () => {
   let component: LoginPageComponent;
   let fixture: ComponentFixture<LoginPageComponent>;
   let authServiceSpy: jasmine.SpyObj<AuthService>;
-  let matSnackBarSpy: jasmine.SpyObj<MatSnackBar>;
+  let messageServiceSpy: jasmine.SpyObj<MessageService>;
   let router: Router;
 
   beforeEach(async () => {
     authServiceSpy = jasmine.createSpyObj<AuthService>("AuthService", {
       auth: of(mockUser),
     });
-    matSnackBarSpy = jasmine.createSpyObj<MatSnackBar>("MatSnackBar", ["open"]);
+    messageServiceSpy = jasmine.createSpyObj<MessageService>("MessageService", [
+      "open",
+    ]);
     await TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
@@ -35,7 +37,7 @@ describe(LoginPageComponent.name, () => {
       declarations: [LoginPageComponent],
       providers: [
         { provide: AuthService, useValue: authServiceSpy },
-        { provide: MatSnackBar, useValue: matSnackBarSpy },
+        { provide: MessageService, useValue: messageServiceSpy },
       ],
     }).compileComponents();
 
@@ -70,15 +72,12 @@ describe(LoginPageComponent.name, () => {
     expect(router.navigateByUrl).toHaveBeenCalledWith("payments");
   });
 
-  it("should display snack bar on authentication failure", () => {
+  it("should display message on authentication failure", () => {
     authServiceSpy.auth.and.returnValue(throwError("login fail"));
     const loginFormComponent: LoginFormComponent = fixture.debugElement.query(
       By.directive(LoginFormComponent)
     ).componentInstance;
     loginFormComponent.submitForm.emit();
-    expect(matSnackBarSpy.open).toHaveBeenCalledWith("login fail", "Fechar", {
-      verticalPosition: "top",
-      duration: 2000,
-    });
+    expect(messageServiceSpy.open).toHaveBeenCalledWith("login fail");
   });
 });

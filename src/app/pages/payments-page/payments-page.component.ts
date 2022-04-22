@@ -4,6 +4,7 @@ import { filter, switchMap, tap } from "rxjs/operators";
 import { Payment } from "src/app/models/payment";
 import { PaymentApiService } from "src/app/services/payment-api/payment-api.service";
 import { ListDataDirective } from "src/app/shared/list-data/directives/list-data/list-data.directive";
+import { MessageService } from "src/app/shared/message/message.service";
 import { PaymentDeleteModalComponent } from "./payment-delete-modal/payment-delete-modal.component";
 import { PaymentFormModalComponent } from "./payment-form-modal/payment-form-modal.component";
 
@@ -17,7 +18,8 @@ export class PaymentsPageComponent {
 
   constructor(
     private paymentApiService: PaymentApiService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private messageService: MessageService
   ) {}
 
   openFormModal(payment?: Payment | undefined): void {
@@ -36,7 +38,7 @@ export class PaymentsPageComponent {
         }),
         tap(() => this.listDataDirective.update())
       )
-      .subscribe(() => console.log("salvo"));
+      .subscribe(() => this.messageService.open("Pagamento salvo!"));
   }
 
   openDeleteModal(payment: Payment): void {
@@ -53,7 +55,7 @@ export class PaymentsPageComponent {
         ),
         tap(() => this.listDataDirective.update())
       )
-      .subscribe(() => console.log("deleted"));
+      .subscribe(() => this.messageService.open("Pagamento excluído!"));
   }
 
   togglePayed(payment: Payment): void {
