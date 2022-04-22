@@ -43,4 +43,53 @@ describe(PaymentsTableComponent.name, () => {
     });
     expect(component.sortChange.emit).toHaveBeenCalledTimes(sortColumns.length);
   });
+
+  it("should edit payment by clicking the edit button", () => {
+    spyOn(component.edit, "emit");
+    fixture.detectChanges();
+
+    const editButtons: HTMLButtonElement[] =
+      fixture.nativeElement.querySelectorAll(
+        "button[aria-label='Editar pagamento']"
+      );
+
+    editButtons.forEach((button, index) => {
+      button.click();
+      expect(component.edit.emit)
+        .withContext(`Payment: ${component.payments[index].title}`)
+        .toHaveBeenCalledWith(component.payments[index]);
+    });
+  });
+
+  it("should delete payment by clicking the delete button", () => {
+    spyOn(component.delete, "emit");
+    fixture.detectChanges();
+
+    const deleteButtons: HTMLButtonElement[] =
+      fixture.nativeElement.querySelectorAll(
+        "button[aria-label='Excluir pagamento']"
+      );
+
+    deleteButtons.forEach((button, index) => {
+      button.click();
+      expect(component.delete.emit)
+        .withContext(`Payment: ${component.payments[index].title}`)
+        .toHaveBeenCalledWith(component.payments[index]);
+    });
+  });
+
+  it("should toggle payment by check/uncheck is payed checkbox", () => {
+    spyOn(component.togglePayed, "emit");
+    fixture.detectChanges();
+
+    const checkboxElements: HTMLInputElement[] =
+      fixture.nativeElement.querySelectorAll("input[type=checkbox]");
+
+    checkboxElements.forEach((input, index) => {
+      input.click();
+      expect(component.togglePayed.emit)
+        .withContext(`Payment: ${component.payments[index].title}`)
+        .toHaveBeenCalledWith(component.payments[index]);
+    });
+  });
 });
