@@ -15,7 +15,7 @@ export class LoggedUserGuard implements CanLoad {
       map((user) => !user),
       tap(
         (isNotAuthenticated) =>
-          !isNotAuthenticated && this.router.navigateByUrl("payments")
+          !isNotAuthenticated && this.router.navigateByUrl("home")
       )
     );
   }

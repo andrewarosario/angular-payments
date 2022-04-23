@@ -31,6 +31,11 @@ export class AuthService {
     );
   }
 
+  logout(): void {
+    this.authUserStore.setUser(null);
+    this.storage.setData(AUTH_USER_KEY, null);
+  }
+
   setUserFromStorage(): void {
     const user = this.storage.getData<User>(AUTH_USER_KEY);
     if (user) {

@@ -63,13 +63,13 @@ describe(LoginPageComponent.name, () => {
     expect(imageElement.getAttribute("alt")).toBe("Login image");
   });
 
-  it("should navigate to payments page when authenticating", () => {
+  it("should navigate to home page when authenticating", () => {
     spyOn(router, "navigateByUrl");
     const loginFormComponent: LoginFormComponent = fixture.debugElement.query(
       By.directive(LoginFormComponent)
     ).componentInstance;
     loginFormComponent.submitForm.emit();
-    expect(router.navigateByUrl).toHaveBeenCalledWith("payments");
+    expect(router.navigateByUrl).toHaveBeenCalledWith("home");
   });
 
   it("should display message on authentication failure", () => {

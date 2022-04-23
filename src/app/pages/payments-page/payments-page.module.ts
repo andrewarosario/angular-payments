@@ -17,7 +17,6 @@ import { PaymentsTableModule } from "./payments-table/payments-table.module";
   imports: [
     CommonModule,
     PaymentsPageRoutingModule,
-    NavbarComponentModule,
     MatButtonModule,
     MatDialogModule,
     PaymentFormModalModule,

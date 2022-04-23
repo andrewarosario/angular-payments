@@ -14,11 +14,11 @@ const routes: Routes = [
       ),
   },
   {
-    path: "payments",
+    path: "home",
     canLoad: [AuthGuard],
     loadChildren: () =>
-      import("./pages/payments-page/payments-page.module").then(
-        (m) => m.PaymentsPageModule
+      import("./pages/home-page/home-page.module").then(
+        (m) => m.HomePageModule
       ),
   },
 ];

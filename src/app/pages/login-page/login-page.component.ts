@@ -19,7 +19,7 @@ export class LoginPageComponent {
 
   submitForm(userData: LoginForm): void {
     this.authService.auth(userData).subscribe(
-      () => this.router.navigateByUrl("payments"),
+      () => this.router.navigateByUrl("home"),
       (error) => this.messageService.open(error)
     );
   }

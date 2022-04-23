@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 
 @Component({
   selector: "app-navbar",
@@ -6,5 +6,6 @@ import { Component } from "@angular/core";
   styleUrls: ["./navbar.component.scss"],
 })
 export class NavbarComponent {
+  @Output() logout = new EventEmitter<void>();
   userAvatarImagePath = "assets/images/user-avatar.svg";
 }

@@ -1,21 +1,17 @@
-<app-navbar></app-navbar>
-
-<main class="ui-container">
-  <h1 class="ui-title">Meus pagamentos</h1>
-  <div class="new-payment">
-    <button color="primary" mat-raised-button (click)="openFormModal()">
-      Adicionar pagamento
-    </button>
-  </div>
-  <div class="ui-table-container" appListData #appListData="appListData">
-    <app-payments-filter
-      [searchParams]="appListData.searchParams"
-    ></app-payments-filter>
-    <app-payments-table
-      [payments]="appListData.dataSource$ | async"
-      (edit)="openFormModal($event)"
-      (delete)="openDeleteModal($event)"
-      (togglePayed)="togglePayed($event)"
-    ></app-payments-table>
-  </div>
-</main>
+<h1 class="ui-title">Meus pagamentos</h1>
+<div class="new-payment">
+  <button color="primary" mat-raised-button (click)="openFormModal()">
+    Adicionar pagamento
+  </button>
+</div>
+<div class="ui-table-container" appListData #appListData="appListData">
+  <app-payments-filter
+    [searchParams]="appListData.searchParams"
+  ></app-payments-filter>
+  <app-payments-table
+    [payments]="appListData.dataSource$ | async"
+    (edit)="openFormModal($event)"
+    (delete)="openDeleteModal($event)"
+    (togglePayed)="togglePayed($event)"
+  ></app-payments-table>
+</div>

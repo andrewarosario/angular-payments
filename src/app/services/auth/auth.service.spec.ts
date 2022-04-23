@@ -74,4 +74,10 @@ describe(AuthService.name, () => {
     service.setUserFromStorage();
     expect(authUserStoreSpy.setUser).not.toHaveBeenCalled();
   });
+
+  it("should logout", () => {
+    service.logout();
+    expect(authUserStoreSpy.setUser).toHaveBeenCalledWith(null);
+    expect(storageSpy.setData).toHaveBeenCalledWith(AUTH_USER_KEY, null);
+  });
 });

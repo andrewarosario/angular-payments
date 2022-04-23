@@ -34,10 +34,10 @@ describe(LoggedUserGuard.name, () => {
     });
   });
 
-  it("should navigate to payments page when authenticated", () => {
+  it("should navigate to home page when authenticated", () => {
     authUserStore.setUser(mockUser);
     guard.canLoad().subscribe(() => {
-      expect(routerSpy.navigateByUrl).toHaveBeenCalledWith("payments");
+      expect(routerSpy.navigateByUrl).toHaveBeenCalledWith("home");
     });
   });
 });

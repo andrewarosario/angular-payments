@@ -1,4 +1,16 @@
 <header class="header">
   <app-logo color="white"></app-logo>
-  <img class="user-avatar" [src]="userAvatarImagePath" alt="User avatar" />
+
+  <img
+    class="user-avatar"
+    [matMenuTriggerFor]="menu"
+    [src]="userAvatarImagePath"
+    alt="User avatar"
+  />
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="logout.emit()">
+      <mat-icon> logout </mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
 </header>
