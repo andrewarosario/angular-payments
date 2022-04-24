@@ -1,16 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
-import { PaymentsFilterComponent } from './payments-filter.component';
+import { PaymentsFilterComponent } from "./payments-filter.component";
+import { PaymentsFilterModule } from "./payments-filter.module";
 
-describe('PaymentsFilterComponent', () => {
+describe(PaymentsFilterComponent.name, () => {
   let component: PaymentsFilterComponent;
   let fixture: ComponentFixture<PaymentsFilterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PaymentsFilterComponent ]
-    })
-    .compileComponents();
+      imports: [BrowserAnimationsModule, PaymentsFilterModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +20,16 @@ describe('PaymentsFilterComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it("should enable filters", () => {
+    component.toggleFilters();
+    expect(component.showFilters).toBe(true);
+  });
+
+  it("should disable filters", () => {
+    spyOn(component.filterForm, "reset");
+    component.showFilters = true;
+    component.toggleFilters();
+    expect(component.showFilters).toBe(false);
+    expect(component.filterForm.reset).toHaveBeenCalled();
   });
 });

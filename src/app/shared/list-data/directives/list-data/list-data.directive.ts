@@ -39,7 +39,7 @@ export class ListDataDirective<T> implements OnInit {
     this.filterEmitter.total$ = this.getTotal();
   }
 
-  update() {
+  update(): void {
     this.updateSource$.next(null);
   }
 
