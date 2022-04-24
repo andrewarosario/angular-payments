@@ -43,8 +43,8 @@ export class PaymentApiService implements ListDataApi<Payment> {
     );
   }
 
-  delete(id: number): Observable<void> {
-    return this.http.delete<void>(
+  delete(id: number): Observable<Object> {
+    return this.http.delete<Object>(
       `${environment.urlApi}/${this.baseURL}/${id}`
     );
   }

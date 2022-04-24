@@ -69,12 +69,13 @@ describe(PaymentApiService.name, () => {
 
   it(`#${PaymentApiService.prototype.delete.name} should delete payment`, (done) => {
     const [mockPayment] = mockPayments;
-    service.delete(mockPayment.id).subscribe(() => {
+    service.delete(mockPayment.id).subscribe((res) => {
+      expect(res).toEqual({});
       done();
     });
 
     httpController
       .expectOne(`${environment.urlApi}/tasks/${mockPayment.id}`)
-      .flush(mockPayment);
+      .flush({});
   });
 });

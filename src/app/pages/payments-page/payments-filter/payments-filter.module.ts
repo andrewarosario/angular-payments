@@ -6,6 +6,8 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatInputModule } from "@angular/material/input";
 import { MatIconModule } from "@angular/material/icon";
+import { CurrencyModule } from "src/app/core/currency/currency.module";
+import { MatSelectModule } from "@angular/material/select";
 
 @NgModule({
   declarations: [PaymentsFilterComponent],
@@ -16,6 +18,8 @@ import { MatIconModule } from "@angular/material/icon";
     MatIconModule,
     MatFormFieldModule,
     MatPaginatorModule,
+    MatSelectModule,
+    CurrencyModule,
   ],
   exports: [PaymentsFilterComponent],
 })

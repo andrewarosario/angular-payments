@@ -1,6 +1,6 @@
 import { ContentChild, Directive, Inject, Input, OnInit } from "@angular/core";
 import { BehaviorSubject, merge, Observable } from "rxjs";
-import { map, scan, startWith, switchMap } from "rxjs/operators";
+import { debounceTime, map, scan, startWith, switchMap } from "rxjs/operators";
 import {
   Params,
   SearchParams,
@@ -14,7 +14,7 @@ import {
   SORT_EMITTER,
 } from "../../interfaces";
 import { mapPage } from "../../operators/map-page";
-import { mapSearch } from "../../operators/map-search";
+import { filterFalsyValuesFromSearch } from "../../operators/filter-falsy-values-from-search";
 import { mapSort } from "../../operators/map-sort";
 
 @Directive({
@@ -26,7 +26,6 @@ export class ListDataDirective<T> implements OnInit {
   @ContentChild(SORT_EMITTER, { static: true }) sortEmitter: SortEmitter;
 
   @Input() searchParams: SearchParams = { _limit: 5, _page: 1 };
-  @Input() searchField = "name";
 
   dataSource$: Observable<T[]>;
   private updateSource$ = new BehaviorSubject<SearchParams | null>(
@@ -52,21 +51,23 @@ export class ListDataDirective<T> implements OnInit {
       this.updateSource$
     ).pipe(
       scan((acc, value) => ({ ...acc, ...value })),
+      filterFalsyValuesFromSearch(),
       switchMap((params) => this.listDataApi.list(params))
     );
   }
 
   private getTotal(): Observable<number> {
-    return this.filterEmitter.searchControl.valueChanges.pipe(
+    return this.filterEmitter.filterForm.valueChanges.pipe(
       startWith({}),
-      mapSearch(this.searchField),
+      debounceTime(300),
+      filterFalsyValuesFromSearch(),
       switchMap((params) => this.listDataApi.getCount(params))
     );
   }
 
   private searchObserver(): Observable<Params> {
-    return this.filterEmitter.searchControl.valueChanges.pipe(
-      mapSearch(this.searchField),
+    return this.filterEmitter.filterForm.valueChanges.pipe(
+      debounceTime(300),
       map((search) => this.resetPagination(search))
     );
   }

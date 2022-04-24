@@ -11,6 +11,13 @@ $color-gray-table: #cfdce5;
   justify-content: space-between;
   padding-left: 22px;
 
+  &__filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
   &__search-input {
     display: flex;
     align-items: center;
@@ -18,13 +25,10 @@ $color-gray-table: #cfdce5;
     height: 32px;
     border: 1px solid $color-gray-table;
     border-radius: 6px;
+    font-size: 14px;
 
     input {
       padding: 8px;
-
-      &::placeholder {
-        font-size: 14px;
-      }
     }
 
     mat-icon {
@@ -32,6 +36,36 @@ $color-gray-table: #cfdce5;
       margin-right: 8px;
     }
   }
+
+  &__btn-filters {
+    font-family: "Lato";
+    font-weight: 600;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+
+    &:hover,
+    &--active {
+      background-color: $color-gray-table;
+    }
+
+    .mat-icon {
+      font-size: 15px;
+      height: 15px;
+      width: 15px;
+    }
+  }
+}
+
+.ui-table-filters {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 22px;
 }
 
 .ui-table {

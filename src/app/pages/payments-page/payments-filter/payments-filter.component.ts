@@ -5,7 +5,7 @@ import {
   Output,
   ViewChild,
 } from "@angular/core";
-import { FormControl } from "@angular/forms";
+import { FormControl, FormGroup } from "@angular/forms";
 import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { PAGE_SIZE_OPTIONS } from "src/app/shared/list-data/constants/page-size-options";
 import { SearchParams } from "src/app/shared/list-data/models/search-params";
@@ -14,6 +14,7 @@ import {
   FilterEmitter,
 } from "src/app/shared/list-data/interfaces/filter-emitter.interface";
 import { Observable } from "rxjs";
+import { fade } from "src/app/animations/fade";
 
 @Component({
   selector: "app-payments-filter",
@@ -22,13 +23,29 @@ import { Observable } from "rxjs";
   providers: [
     { provide: FILTER_EMITTER, useExisting: PaymentsFilterComponent },
   ],
+  animations: [fade],
 })
 export class PaymentsFilterComponent implements FilterEmitter {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @Input() searchParams: SearchParams;
   @Output() pageChange = new EventEmitter<PageEvent>();
+  showFilters = false;
 
   total$: Observable<number>;
-  searchControl = new FormControl();
   readonly pageSizeOptions = PAGE_SIZE_OPTIONS;
+
+  filterForm = new FormGroup({
+    name_like: new FormControl(""),
+    title_like: new FormControl(""),
+    value_gte: new FormControl(null),
+    value_lte: new FormControl(null),
+    isPayed: new FormControl(""),
+  });
+
+  toggleFilters(): void {
+    this.showFilters = !this.showFilters;
+    if (!this.showFilters) {
+      this.filterForm.reset();
+    }
+  }
 }

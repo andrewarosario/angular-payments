@@ -1,17 +1,67 @@
-<div class="ui-table-header">
-  <div class="ui-table-header__search-input">
-    <input
-      type="text"
-      matInput
-      [formControl]="searchControl"
-      placeholder="Pesquisar por usuário"
-    />
-    <mat-icon>search</mat-icon>
+<ng-container [formGroup]="filterForm">
+  <div class="ui-table-header">
+    <div class="ui-table-header__filter">
+      <div class="ui-table-header__search-input">
+        <input
+          type="text"
+          matInput
+          formControlName="name_like"
+          placeholder="Pesquisar por usuário"
+        />
+        <mat-icon>search</mat-icon>
+      </div>
+      <button
+        class="ui-table-header__btn-filters"
+        [ngClass]="{ 'ui-table-header__btn-filters--active': showFilters }"
+        (click)="toggleFilters()"
+      >
+        <mat-icon>settings_input_component</mat-icon>
+        <span>Filtrar</span>
+      </button>
+    </div>
+    <mat-paginator
+      [pageSizeOptions]="pageSizeOptions"
+      [pageSize]="searchParams?._limit"
+      [length]="total$ | async"
+      (page)="pageChange.emit($event)"
+    ></mat-paginator>
   </div>
-  <mat-paginator
-    [pageSizeOptions]="pageSizeOptions"
-    [pageSize]="searchParams?._limit"
-    [length]="total$ | async"
-    (page)="pageChange.emit($event)"
-  ></mat-paginator>
-</div>
+
+  <div class="ui-table-filters" *ngIf="showFilters" [@fade]>
+    <mat-form-field appearance="legacy">
+      <input
+        type="text"
+        matInput
+        placeholder="Título"
+        formControlName="title_like"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy">
+      <input
+        matInput
+        currencyMask
+        placeholder="Valor mínimo"
+        formControlName="value_gte"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy">
+      <input
+        matInput
+        currencyMask
+        placeholder="Valor máximo"
+        formControlName="value_lte"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy">
+      <mat-label>Pago?</mat-label>
+      <mat-select formControlName="isPayed">
+        <mat-option value="">Todos</mat-option>
+        <mat-option value="true">Pago</mat-option>
+        <mat-option value="false">Não pago</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</ng-container>
