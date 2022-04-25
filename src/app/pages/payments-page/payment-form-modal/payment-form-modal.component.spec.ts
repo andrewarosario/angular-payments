@@ -74,6 +74,14 @@ describe(PaymentFormModalComponent.name, () => {
     });
   });
 
+  it("should not submit when form is invalid", () => {
+    component.payment = mockPayment;
+    fixture.detectChanges();
+    component.form.patchValue({ name: "" });
+    submitForm();
+    expect(dialogSpy.close).not.toHaveBeenCalled();
+  });
+
   it("should cancel operation", () => {
     component.payment = mockPayment;
     fixture.detectChanges();

@@ -1,12 +1,12 @@
+import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { Router } from "@angular/router";
-import { RouterTestingModule } from "@angular/router/testing";
 import { NavbarComponent } from "src/app/components/navbar/navbar.component";
+import { NavbarComponentModule } from "src/app/components/navbar/navbar.component.module";
 import { AuthService } from "src/app/services/auth/auth.service";
 
 import { HomePageComponent } from "./home-page.component";
-import { HomePageModule } from "./home-page.module";
 
 describe(HomePageComponent.name, () => {
   let component: HomePageComponent;
@@ -20,7 +20,8 @@ describe(HomePageComponent.name, () => {
     ]);
     routerSpy = jasmine.createSpyObj<Router>("Router", ["navigateByUrl"]);
     await TestBed.configureTestingModule({
-      imports: [HomePageModule, RouterTestingModule],
+      imports: [NavbarComponentModule],
+      declarations: [HomePageComponent],
       providers: [
         {
           provide: AuthService,
@@ -31,6 +32,7 @@ describe(HomePageComponent.name, () => {
           useValue: routerSpy,
         },
       ],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   });
 
