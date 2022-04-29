@@ -8,7 +8,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "api": "json-server --watch db.json"
+    "api": "json-server --watch db.json",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "private": true,
   "dependencies": {
@@ -32,6 +34,7 @@
     "@angular/cli": "~12.1.4",
     "@angular/compiler-cli": "~12.1.4",
     "@angular/language-service": "~12.1.4",
+    "@cypress/schematic": "^1.6.0",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
@@ -46,6 +49,7 @@
     "protractor": "~7.0.0",
     "ts-node": "~7.0.0",
     "tslint": "~6.1.0",
-    "typescript": "~4.3.5"
+    "typescript": "~4.3.5",
+    "cypress": "latest"
   }
 }
