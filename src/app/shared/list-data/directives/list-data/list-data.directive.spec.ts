@@ -5,7 +5,7 @@ import {
   TestBed,
   tick,
 } from "@angular/core/testing";
-import { FormControl, FormGroup } from "@angular/forms";
+import { UntypedFormControl, UntypedFormGroup } from "@angular/forms";
 import {
   PageEvent,
   MatPaginator,
@@ -53,7 +53,7 @@ class MockDataApi implements ListDataApi<MockData> {
 })
 class FilterEmitterMockComponent implements FilterEmitter {
   @Output() pageChange = new EventEmitter<PageEvent>();
-  filterForm = new FormGroup({ value: new FormControl("") });
+  filterForm = new UntypedFormGroup({ value: new UntypedFormControl("") });
   total$: Observable<number>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 }

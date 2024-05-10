@@ -1,11 +1,11 @@
 import { EventEmitter, InjectionToken } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { UntypedFormGroup } from "@angular/forms";
 import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { Observable } from "rxjs";
 
 export interface FilterEmitter {
   pageChange: EventEmitter<PageEvent>;
-  filterForm: FormGroup;
+  filterForm: UntypedFormGroup;
   total$: Observable<number>;
   paginator: MatPaginator;
 }
