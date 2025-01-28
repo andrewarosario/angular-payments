@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { LoginForm } from "src/app/models/login-form";
 
 @Component({
@@ -8,11 +8,11 @@ import { LoginForm } from "src/app/models/login-form";
   styleUrls: ["./login-form.component.scss"],
 })
 export class LoginFormComponent implements OnInit {
-  form: FormGroup;
+  form: UntypedFormGroup;
   hidePassword = true;
   @Output() submitForm = new EventEmitter<LoginForm>();
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: UntypedFormBuilder) {}
 
   ngOnInit(): void {
     this.buildForm();

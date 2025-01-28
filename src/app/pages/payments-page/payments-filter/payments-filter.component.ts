@@ -5,7 +5,7 @@ import {
   Output,
   ViewChild,
 } from "@angular/core";
-import { FormControl, FormGroup } from "@angular/forms";
+import { UntypedFormControl, UntypedFormGroup } from "@angular/forms";
 import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { PAGE_SIZE_OPTIONS } from "src/app/shared/list-data/constants/page-size-options";
 import { SearchParams } from "src/app/shared/list-data/models/search-params";
@@ -34,12 +34,12 @@ export class PaymentsFilterComponent implements FilterEmitter {
   total$: Observable<number>;
   readonly pageSizeOptions = PAGE_SIZE_OPTIONS;
 
-  filterForm = new FormGroup({
-    name_like: new FormControl(""),
-    title_like: new FormControl(""),
-    value_gte: new FormControl(null),
-    value_lte: new FormControl(null),
-    isPayed: new FormControl(""),
+  filterForm = new UntypedFormGroup({
+    name_like: new UntypedFormControl(""),
+    title_like: new UntypedFormControl(""),
+    value_gte: new UntypedFormControl(null),
+    value_lte: new UntypedFormControl(null),
+    isPayed: new UntypedFormControl(""),
   });
 
   toggleFilters(): void {
